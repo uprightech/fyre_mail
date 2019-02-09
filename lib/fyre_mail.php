@@ -17,13 +17,13 @@ use PHPMailer\PHPMailer\Exception;
 
 function fyre_send_plain_mail($message,$options,&$error) {
 	
-	$options['message_type'] = 'html';
+	$options['message_type'] = 'text';
 	return fyre_send_mail($message,$options,$error);
 }
 
 function fyre_send_html_mail($message,$options,&$error) {
 
-	$options['message_type'] = 'text';
+	$options['message_type'] = 'html';
 	return fyre_send_mail($message,$options,$error);
 }
 
@@ -52,6 +52,15 @@ function fyre_send_mail($message,$options,&$error) {
 			$mailer->addAddress($to);
 		else if(is_array($to))
 			$mailer->addAddress($to[0],$to[1]);
+	}
+
+	if(fyre_is_option_set('reply_to',$options)) {
+
+		$reply_to = $options['reply_to'];
+		if(is_string($to))
+			$mailer->addReplyTo($reply_to);
+		else if(is_array($reply_to))
+			$mailer->addReplyTo($reply_to[0],$reply_to[1]);
 	}
 
 	if(fyre_is_option_set('subject',$options))

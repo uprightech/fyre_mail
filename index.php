@@ -4,7 +4,8 @@ require_once dirname(__FILE__).'./lib/fyre_mail.php';
 $mail_options = [
 	'from' => 'contact@vgsw.org',
 	'to' => 'uprightech@gmail.com',
-	'subject'=> 'Test Subject'
+	'subject'=> 'Test Subject',
+	'reply_to'=>'uprightech@gmail.com'
 ];
 
 $message = '<p>This is a test message </p>';
