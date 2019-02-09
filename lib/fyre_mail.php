@@ -80,7 +80,6 @@ function fyre_is_option_set($name,$options) {
 function fyre_create_phpmailer() {
 
 	$mailer = new PHPMailer(false);
-	$mailer->SMTPDebug = 3;
 	$phpmailer_config = require_once FYRE_MAIL_CONFIG_FILE;
 
 	if(fyre_is_option_set('smtp_hostname',$phpmailer_config))
